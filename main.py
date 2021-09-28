@@ -34,7 +34,7 @@ class node:
         self.vertex_id = vertex_id
         self.adjacency_set= set()
 
-    def  add_edge(self, v):
+    def add_edge(self, v):
         if self.vertex_id == v:
             raise ValueError("The vertex %d cannot be adjacent to itself" % v)
 
