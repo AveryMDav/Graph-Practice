@@ -3,26 +3,33 @@ a = "\n".join([
     ".W...",
     ".W.W.",
     "...W.",
+    "...W.",
     "...W."])
 
 
 def path_finder(maze):
     maze_list = maze.split()
-    X = 0
-    Y = 0
-    end_of_maze = len(maze) - 1
-    current = (X, Y)
+    end_of_maze = [(len(maze_list) - 1), (len(maze_list[len(maze_list) - 1]) - 1)]
+    current = [0, 0]
 
-    while current != (5, 5):
-        print(current)
-        X += 1
-        Y += 1
-        current = (X, Y)
+    while current != end_of_maze:
+        visited = []
+        Y = current[0]
+        X = current[1]
 
-        if current == (5, 5):
-            return print(current)
+        while current[0] != len(maze_list) - 1:
+            if maze_list[X + 1][Y] == ".":
+                print(current)
+                Y += 1
+                current = [X, Y]
+            elif maze_list[X + 1][Y] == ".":
+                print(current)
+                X += 1
+                current = [X, Y]
 
-    return print(end_of_maze)
+        return print("out of range")
+
+    return print(True)
 
 
 path_finder(a)
