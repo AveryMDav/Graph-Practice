@@ -1,5 +1,12 @@
 import numpy as np
 
+a = "\n".join([
+    ".WWWW",
+    "W.WWW",
+    "WW.WW",
+    "WWW.W",
+    "WWWW."])
+
 
 def path_finder(maze):
     visited_list = np.zeros(len(maze))
@@ -8,6 +15,9 @@ def path_finder(maze):
 
 def path_finder_helper(maze, visited, current=0):
     goal = len(maze) - 1
+
+    if maze[0] == "W":
+        return False
 
     if visited[current] == 1:
         return False
@@ -25,7 +35,7 @@ def path_finder_helper(maze, visited, current=0):
         if path_finder_helper(maze, visited, current - (maze.index("\n") + 1)):
             return True
 
-    if current < (len(maze) - (maze.index("\n") + 1)) and maze[current + (maze.index("\n") + 1)] == ".":
+    if current <= (len(maze) - (maze.index("\n") + 1)) and maze[current + (maze.index("\n") + 1)] == ".":
         if path_finder_helper(maze, visited, current + (maze.index("\n") + 1)):
             return True
 
@@ -36,4 +46,4 @@ def path_finder_helper(maze, visited, current=0):
     return False
 
 
-path_finder(a)
+print(path_finder(a))
